@@ -1,0 +1,185 @@
+<div class="home-container">
+    <div class="home__header">
+        <div class="home__header__left">
+            <img src="assets/fb-head.jpg" alt="logo" mat-card-avatar>
+            <div class="input">
+                <mat-icon class="search-icon">search</mat-icon>
+                <form >
+                    <input type="text" placeholder="Search Facebook">
+                </form>
+            </div>
+        </div>
+
+        <div class="home__header__middle">
+            <div class="active">
+                <mat-icon>home</mat-icon>
+            </div>
+            <div>
+                <mat-icon>ondemand_video</mat-icon>
+            </div><div>
+                <mat-icon>store</mat-icon>
+            </div><div>
+                <mat-icon>group</mat-icon>
+            </div><div>
+                <mat-icon>flag</mat-icon>
+            </div>
+        </div>
+        
+        <div class="home__header__right">
+            <div>
+                <img [src]="user?.avatar" alt="avatar" mat-card-avatar>
+                <span class="name">{{user?.firstName || 'Default User'}}</span>
+            </div>
+            <div>
+                <mat-icon>add</mat-icon>
+            </div>
+            <div>
+                <mat-icon
+                matBadge='4'
+                matBadgeColor='primary'
+                matBadgeOverlap='false'
+                matBadgePosition='above after'
+                >forum</mat-icon>
+            </div>
+            <div>
+                <mat-icon
+                matBadge='3'
+                matBadgeColor='warn'
+                matBadgeOverlap='false'
+                matBadgePosition='above after'
+                >notifications</mat-icon>
+            </div>
+        </div>
+        <mat-icon [matMenuTriggerFor]='menu'>expand_more</mat-icon>
+        <mat-menu #menu='matMenu'>
+            <button mat-menu-item (click)='logout()'>
+                <mat-icon >exit_to_app</mat-icon> Logout
+            </button>
+        </mat-menu>
+    </div>
+
+    <div class="home__body">
+
+        <div class="home__body__sidebarLeft">
+            <div class="inside">
+              <div class="user-avatar">
+                <img
+                  alt="{{user?.firstName}}"
+                  mat-card-avatar
+                  [src]="user?.avatar">
+                <span class="name">{{user?.firstName}} {{user?.lastName}}</span>
+              </div>
+              <div>
+                <mat-icon> local_hospital</mat-icon>
+                <span class="covid">COVID-19 Information Center</span>
+              </div>
+      
+              <div>
+                <mat-icon>flag</mat-icon>
+                <span>Pages</span>
+              </div>
+      
+              <div>
+                <mat-icon>people</mat-icon>
+                <span>Friends</span>
+              </div>
+      
+              <div>
+                <mat-icon> chat</mat-icon>
+                <span>Messenger</span>
+              </div>
+      
+              <div>
+                <mat-icon>store</mat-icon>
+                <span>Marketplace</span>
+              </div>
+      
+              <div>
+                <mat-icon>video_library</mat-icon>
+                <span>Videos</span>
+              </div>
+      
+              <div>
+                <mat-icon class="see-more">expand_more</mat-icon>
+                <span>See More</span>
+              </div>
+      
+            </div>
+        </div>
+
+        <div class="home__body__contentMiddle">
+
+            <div class="home__body__contentMiddle__top">
+              <!--IMAGE CARDS-->
+              <mat-card *ngFor='let i of images' class="image-card">
+                <img alt="bg"
+                     class="bg" src="{{ i }}">
+                <mat-card-content>
+                  <img
+                    alt="avatar"
+                    class="avatar" src="data:image/jpeg;base64,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">
+                  <span class="card-name">Sambhav Singhai</span>
+                </mat-card-content>
+              </mat-card>
+      
+            </div>
+      
+            <div class="home__body__contentMiddle__center">
+              <mat-card class="post-message">
+                <mat-card-header class="post-message-header"
+                                 style="padding-bottom: 20px; border-bottom: 1px solid lightgray;">
+                  <img
+                    alt="{{user?.firstName}}"
+                    mat-card-avatar
+                    [src]="user?.avatar">
+                  <form #form="ngForm" (ngSubmit)='postMessage(form)'>
+                    <input class="on-your-mind" name="message" ngModel placeholder="What's on your mind?" type="text">
+                    <button style="display: none;" type="submit"></button>
+                  </form>
+      
+                </mat-card-header>
+                <mat-card-content class="card-body">
+                  <div>
+                    <mat-icon color="accent">videocam</mat-icon>
+                    <span>Live Video</span>
+                  </div>
+      
+                  <div>
+                    <mat-icon color="primary">photo_album</mat-icon>
+                    <span>Photo/Video</span>
+                  </div>
+      
+                  <div>
+                    <mat-icon color="warn">mood</mat-icon>
+                    <span>Feeling/Activity</span>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+      
+              <!--Loop Through All Posts From Database and Display-->
+              <mat-card  *ngFor = "let p of posts"  class="posts">
+                <mat-card-header class="posts__header">
+                  <img alt="{{ p?.title }}" mat-card-avatar [src]="p?.avatar">
+                  <div class="posts__header__right">
+                    <span>{{p?.time?.seconds * 1000 | date: 'medium'}}</span>
+                    <h3>{{p?.title}}</h3>
+                  </div>
+                </mat-card-header>
+                <mat-card-content class="posts__body">
+                  <p>{{p?.message}}</p>
+                </mat-card-content>
+              </mat-card>
+      
+      
+            </div>
+      
+      
+          </div>
+
+        <div class="home__body__feedRight">
+            <div class="inside">
+                <img src="assets/feed.jpg" alt="feed">
+            </div>
+        </div>
+    </div>
+</div>
